@@ -4,7 +4,6 @@ import com.bogdan.data.Person;
 import com.bogdan.repositories.PersonRepository;
 import com.google.common.collect.Lists;
 import com.sun.management.OperatingSystemMXBean;
-import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,10 +23,6 @@ public class PersonService {
 
     private OperatingSystemMXBean operatingSystemMXBean =
             (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-
-    public PersonService() {
-        BasicConfigurator.configure();
-    }
 
     public List<Person> getPersons() {
         logger.info("This process uses " + operatingSystemMXBean.getProcessCpuLoad() * 100 +  "% of CPU");
