@@ -22,7 +22,7 @@ import java.util.List;
  * Created by Bogdan on 13-May-17.
  */
 @Controller
-@Api(value="Test", description="Hai sa testam")
+@Api(value="Persons", description="Controller for Person entity")
 public class PersonController {
     @Autowired
     private PersonService personService;
