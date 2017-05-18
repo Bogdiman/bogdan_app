@@ -26,11 +26,21 @@ public class PersonService {
 
     public List<Person> getPersons() {
         logger.info("This process uses " + operatingSystemMXBean.getProcessCpuLoad() * 100 +  "% of CPU");
-        return Lists.newArrayList(personRepository.findAll());
+        long ramUsage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        logger.info("RAM usage is " + ramUsage);
+        long startTime = System.currentTimeMillis();
+        List<Person> result = Lists.newArrayList(personRepository.findAll());
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
+        logger.info("Time needed for DB fetch: " + totalTime);
+        return result;
+
     }
 
     public void save(Person p) {
         logger.info("This process uses " + operatingSystemMXBean.getProcessCpuLoad() * 100 +  "% of CPU");
+        long ramUsage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        logger.info("RAM usage is " + ramUsage);
         personRepository.save(p);
     }
 }
