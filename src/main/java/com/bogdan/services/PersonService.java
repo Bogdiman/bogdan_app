@@ -25,6 +25,7 @@ public class PersonService {
             (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 
     public List<Person> getPersons() {
+        logger.info("-----------------------------------------");
         logger.info("DB FETCH: This process uses " + operatingSystemMXBean.getProcessCpuLoad() * 100 +  "% of CPU");
         long ramUsage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         logger.info("DB FETCH: RAM usage is " + ramUsage);
@@ -33,14 +34,22 @@ public class PersonService {
         long endTime = System.currentTimeMillis();
         long totalTime = endTime - startTime;
         logger.info("DB FETCH: Time needed is " + totalTime + " (msec)");
+        logger.info("-----------------------------------------");
         return result;
 
     }
 
     public void save(Person p) {
+        logger.info("-----------------------------------------");
         logger.info("DB SAVE: This process uses " + operatingSystemMXBean.getProcessCpuLoad() * 100 +  "% of CPU");
         long ramUsage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         logger.info("DB SAVE: RAM usage is " + ramUsage);
+        logger.info("-----------------------------------------");
+        long startTime = System.currentTimeMillis();
         personRepository.save(p);
+        long endTime = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
+        logger.info("DB FETCH: Time needed is " + totalTime + " (msec)");
+        logger.info("-----------------------------------------");
     }
 }
