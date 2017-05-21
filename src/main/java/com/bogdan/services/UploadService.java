@@ -1,6 +1,5 @@
 package com.bogdan.services;
 
-import com.sun.management.OperatingSystemMXBean;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -8,7 +7,6 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.lang.management.ManagementFactory;
 import java.net.Socket;
 
 /**
@@ -19,9 +17,6 @@ public class UploadService {
     private final int CHUNK_SIZE = 5;
 
     private Logger logger = Logger.getLogger(UploadService.class);
-
-    private OperatingSystemMXBean operatingSystemMXBean =
-            (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 
     public void uploadFile(MultipartFile file) throws IOException {
         try (
