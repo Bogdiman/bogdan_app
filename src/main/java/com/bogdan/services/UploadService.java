@@ -36,6 +36,7 @@ public class UploadService {
             }
             long endTime = System.currentTimeMillis();
             long totalTime = endTime - startTime;
+            logger.info("-----------------------------------------");
             logger.info("UPLOAD FILE: Time needed is " + totalTime + " (msec)");
             logger.info("-----------------------------------------");
         }

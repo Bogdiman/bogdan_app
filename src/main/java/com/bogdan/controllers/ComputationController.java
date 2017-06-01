@@ -1,6 +1,8 @@
 package com.bogdan.controllers;
 
 import com.bogdan.data.Person;
+import com.bogdan.services.MapReduceService;
+import com.bogdan.services.PermutationService;
 import com.bogdan.services.PersonService;
 import com.bogdan.services.UploadService;
 import io.swagger.annotations.Api;
@@ -33,6 +35,12 @@ public class ComputationController {
 
     @Autowired
     private UploadService uploadService;
+
+    @Autowired
+    private MapReduceService mapReduceService;
+
+    @Autowired
+    private PermutationService permutationService;
 
     @RequestMapping(value = "/person", method = RequestMethod.GET)
     @ResponseBody
@@ -71,5 +79,31 @@ public class ComputationController {
     @ResponseStatus(HttpStatus.OK)
     public void sendFile(@RequestParam("file") MultipartFile file) throws IOException {
         uploadService.uploadFile(file);
+    }
+
+    @RequestMapping(value = "/map_reduce", method = RequestMethod.GET)
+    @ResponseBody
+    @ApiOperation(value = "Calculate the sum of the elements of a list with the given size on multiple threads")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = String.class),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Failure")})
+    public void mapReduce(@RequestParam("listSize") int listSize) throws IOException {
+        mapReduceService.mapReduce(listSize);
+    }
+
+    @RequestMapping(value = "/permutations", method = RequestMethod.GET)
+    @ResponseBody
+    @ApiOperation(value = "Generate given permutations of 6 characters")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "Success", response = String.class),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Failure")})
+    public void permute(@RequestParam("wordSize") int wordSize) throws IOException {
+        permutationService.permute(wordSize);
     }
 }

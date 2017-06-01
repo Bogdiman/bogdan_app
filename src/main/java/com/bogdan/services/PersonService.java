@@ -44,12 +44,11 @@ public class PersonService {
         logger.info("DB SAVE: This process uses " + operatingSystemMXBean.getProcessCpuLoad() * 100 +  "% of CPU");
         long ramUsage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
         logger.info("DB SAVE: RAM usage is " + ramUsage);
-        logger.info("-----------------------------------------");
         long startTime = System.currentTimeMillis();
         personRepository.save(p);
         long endTime = System.currentTimeMillis();
         long totalTime = endTime - startTime;
-        logger.info("DB FETCH: Time needed is " + totalTime + " (msec)");
+        logger.info("DB SAVE: Time needed is " + totalTime + " (msec)");
         logger.info("-----------------------------------------");
     }
 }
