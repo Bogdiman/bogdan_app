@@ -19,7 +19,7 @@ public class DataConfig {
     @Bean
     public DataSource dataSource() {
         return new SimpleDriverDataSource(new org.postgresql.Driver(), String.format("jdbc:postgresql://%s:%d/%s",
-                "localhost", 5432, "testDB"), "postgres", "opsware");
+                "192.168.99.100", 5432, "testDB"), "postgres", "opsware");
     }
 
     @Bean

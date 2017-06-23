@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.lang.management.ManagementFactory;
+import java.lang.management.MemoryUsage;
 import java.util.List;
 
 /**
@@ -42,8 +43,9 @@ public class PersonService {
     public void save(Person p) {
         logger.info("-----------------------------------------");
         logger.info("DB SAVE: This process uses " + operatingSystemMXBean.getProcessCpuLoad() * 100 +  "% of CPU");
-        long ramUsage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
-        logger.info("DB SAVE: RAM usage is " + ramUsage);
+        //long ramUsage = Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory();
+        MemoryUsage heapMemoryUsage = ManagementFactory.getMemoryMXBean().getHeapMemoryUsage();
+        logger.info("DB SAVE: RAM usage is " + heapMemoryUsage.getUsed());
         long startTime = System.currentTimeMillis();
         personRepository.save(p);
         long endTime = System.currentTimeMillis();

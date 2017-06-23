@@ -20,7 +20,7 @@ public class Person {
     @Column(name = "PERSON_ID")
     private long id;
 
-    @Column(name = "NAME", unique = true)
+    @Column(name = "NAME")
     private String name;
 
     public String getName() {

@@ -20,7 +20,7 @@ public class UploadService {
 
     public void uploadFile(MultipartFile file) throws IOException {
         try (
-            Socket echoSocket = new Socket("192.168.99.100", 9874);
+            Socket echoSocket = new Socket("localhost", 39874);
             DataOutputStream out = new DataOutputStream(echoSocket.getOutputStream());
             DataInputStream in = new DataInputStream(echoSocket.getInputStream())
         ) {

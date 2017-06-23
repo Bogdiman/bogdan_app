@@ -13,7 +13,7 @@ import java.net.Socket;
 public class PermutationService {
     public void permute(int wordSize) throws IOException {
         try (
-                Socket echoSocket = new Socket("127.0.0.1", 9876);
+                Socket echoSocket = new Socket("192.168.99.100", 9876);
                 DataOutputStream out = new DataOutputStream(echoSocket.getOutputStream())
         ) {
             out.writeInt(wordSize);

@@ -62,6 +62,7 @@ public class ComputationController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Failure")})
     @RequestMapping(method = RequestMethod.POST, value = "/person")
+    @ApiOperation(value = "Save a person into the DB")
     @ResponseStatus(HttpStatus.CREATED)
     @ResponseBody
     public void savePerson(@Valid @RequestBody Person person) {
@@ -96,7 +97,7 @@ public class ComputationController {
 
     @RequestMapping(value = "/permutations", method = RequestMethod.GET)
     @ResponseBody
-    @ApiOperation(value = "Generate given permutations of 6 characters")
+    @ApiOperation(value = "Generate permutations of given size with 6 hardcoded characters")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "Success", response = String.class),
             @ApiResponse(code = 401, message = "Unauthorized"),
